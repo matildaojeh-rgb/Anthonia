@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anthonia Ifeayinwa Ojeh — CEO, Tilda Wilma Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #030508;
+      --surface: #080c12;
+      --card: #0d1420;
+      --border: rgba(255,255,255,0.07);
+      --accent: #00e5ff;
+      --accent2: #7b2fff;
+      --accent3: #ff3e6c;
+      --gold: #f5c842;
+      --text: #e8edf5;
+      --muted: #6b7a96;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor {
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, background 0.3s;
+      mix-blend-mode: screen;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(0,229,255,0.5);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, border-color 0.3s;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(3,5,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.6rem 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--accent); color: var(--black); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 10rem 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,47,255,0.18) 0%, transparent 70%);
+      top: -100px; right: -150px;
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,255,0.1) 0%, transparent 70%);
+      bottom: 0; left: -100px;
+      pointer-events: none;
+      animation: pulse 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(0,229,255,0.3);
+      padding: 0.4rem 1rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 1.5s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #fff;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero-name span {
+      display: block;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: var(--gold);
+      margin-top: 1.5rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-desc {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 550px;
+      margin-top: 1.5rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      margin-top: 3rem;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: var(--black);
+      padding: 1rem 2.5rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: none;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 1rem 2.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: none;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex; gap: 4rem; margin-top: 5rem;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+    .stat-item { border-left: 2px solid var(--accent2); padding-left: 1.2rem; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 2rem;
+      color: #fff;
+    }
+    .stat-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION COMMON */
+    section { position: relative; padding: 8rem 4rem; z-index: 1; }
+    .section-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .section-title em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+    .service-card {
+      background: var(--card);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,229,255,0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .service-card:hover { background: #0f1825; }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon {
+      font-size: 2rem; margin-bottom: 1.5rem;
+      display: block;
+    }
+    .service-num {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+    }
+    .service-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .service-desc { font-size: 0.75rem; line-height: 1.9; color: var(--muted); }
+    .service-tag {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(0,229,255,0.25);
+      padding: 0.3rem 0.8rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .about-visual::after {
+      content: 'A.I.O';
+      position: absolute;
+      inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 8rem;
+      font-weight: 800;
+      color: rgba(0,229,255,0.07);
+      letter-spacing: -0.05em;
+    }
+    .about-visual-inner {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(123,47,255,0.15) 0%, rgba(0,229,255,0.08) 100%);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      background: var(--accent2);
+      padding: 1rem 1.5rem;
+      z-index: 2;
+    }
+    .about-badge-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .about-quote {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 2rem;
+    }
+    .about-body { font-size: 0.8rem; line-height: 2; color: var(--muted); }
+    .about-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .chip {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 0.45rem 1rem;
+      color: var(--text);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* MARQUEE */
+    .marquee-section {
+      padding: 3rem 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .marquee-track {
+      display: flex; gap: 4rem;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 1.5rem;
+      flex-shrink: 0;
+    }
+    .marquee-item span { color: var(--accent); font-size: 1.5rem; }
+
+    /* PRODUCTS */
+    .products-section { background: var(--surface); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s;
+      overflow: hidden;
+    }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(0,229,255,0.3); }
+    .product-card.featured {
+      border-color: rgba(123,47,255,0.5);
+      background: linear-gradient(135deg, rgba(123,47,255,0.08), var(--card));
+    }
+    .product-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      margin-bottom: 1rem;
+    }
+    .product-card.featured .product-label { color: var(--gold); }
+    .product-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .product-desc { font-size: 0.75rem; line-height: 1.8; color: var(--muted); }
+    .product-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .product-cta {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      cursor: none;
+      transition: opacity 0.3s;
+    }
+    .product-cta:hover { opacity: 0.7; }
+    .product-arrow { color: var(--accent); font-size: 1.2rem; }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--black);
+      text-align: center;
+    }
+    .contact-inner { max-width: 700px; margin: 0 auto; }
+    .contact-big {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.95;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .contact-big em {
+      display: block;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .contact-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 3rem; line-height: 1.9; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      transition: all 0.3s;
+      cursor: none;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.04); }
+    .contact-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .footer-copy { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      section { padding: 6rem 2rem; }
+      .hero { padding: 8rem 2rem 5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .products-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">A.I.O</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Work With Me</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <div class="hero-tag">CEO · Tilda Wilma Limited</div>
+      <h1 class="hero-name">
+        Anthonia<br/>
+        Ifeayinwa
+        <span>Ojeh</span>
+      </h1>
+      <p class="hero-title">Building Empires Across Multiple Frontiers</p>
+      <p class="hero-desc">Freight forwarder. Perfume curator. Content creator. Affiliate marketer. Digital product seller. I don't fit one box — I engineer multiple streams of excellence.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore My Work</a>
+        <a href="#contact" class="btn-secondary">Let's Connect</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Industries</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Powerful Brand</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Possibilities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-item"><span>✦</span> Freight Forwarding</div>
+      <div class="marquee-item"><span>✦</span> Luxury Perfumes</div>
+      <div class="marquee-item"><span>✦</span> Content Creation</div>
+      <div class="marquee-item"><span>✦</span> Affiliate Marketing</div>
+      <div class="marquee-item"><span>✦</span> Digital Products</div>
+      <div class="marquee-item"><span>✦</span> Tilda Wilma Limited</div>
+      <!-- duplicate for seamless loop -->
+      <div class="marquee-item"><span>✦</span> Freight Forwarding</div>
+      <div class="marquee-item"><span>✦</span> Luxury Perfumes</div>
+      <div class="marquee-item"><span>✦</span> Content Creation</div>
+      <div class="marquee-item"><span>✦</span> Affiliate Marketing</div>
+      <div class="marquee-item"><span>✦</span> Digital Products</div>
+      <div class="marquee-item"><span>✦</span> Tilda Wilma Limited</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-tag">// What I Do</div>
+    <h2 class="section-title">Multiple Streams,<br/><em>One Vision</em></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🚢</span>
+        <div class="service-num">01</div>
+        <div class="service-name">Freight Forwarding</div>
+        <div class="service-desc">End-to-end logistics solutions — sea, air, and land freight. I handle the complexities of international shipping so your cargo arrives safely, efficiently, and on time.</div>
+        <span class="service-tag">Logistics</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌹</span>
+        <div class="service-num">02</div>
+        <div class="service-name">Luxury Perfumes</div>
+        <div class="service-desc">Carefully curated, exquisite fragrances that tell a story. From rare niche scents to signature blends, I bring luxury to your senses at accessible price points.</div>
+        <span class="service-tag">Fragrance</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎬</span>
+        <div class="service-num">03</div>
+        <div class="service-name">Content Creation</div>
+        <div class="service-desc">Bold, authentic storytelling across social media platforms. I create content that resonates, converts, and builds real communities around brands and ideas.</div>
+        <span class="service-tag">Media</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💰</span>
+        <div class="service-num">04</div>
+        <div class="service-name">Affiliate Marketing</div>
+        <div class="service-desc">Proven strategies to drive revenue through affiliate partnerships. I help brands scale their reach while teaching others how to create sustainable passive income streams.</div>
+        <span class="service-tag">Marketing</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📦</span>
+        <div class="service-num">05</div>
+        <div class="service-name">Digital Products</div>
+        <div class="service-desc">High-value digital assets — eBooks, templates, courses, and toolkits — designed to empower entrepreneurs and professionals to level up their business and skills.</div>
+        <span class="service-tag">Digital</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏛️</span>
+        <div class="service-num">06</div>
+        <div class="service-name">Tilda Wilma Limited</div>
+        <div class="service-desc">The umbrella brand that ties it all together. A company built on excellence, integrity, and the relentless pursuit of multi-industry impact under one powerful vision.</div>
+        <span class="service-tag">Corporate</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="background: var(--surface);">
+    <div class="section-tag">// The Woman Behind It All</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Meet <em>Anthonia</em></h2>
+        <p class="about-quote">"I was built to do more than one thing — so I do all of them brilliantly."</p>
+        <p class="about-body">I am Anthonia Ifeayinwa Ojeh, CEO of Tilda Wilma Limited — a multi-passionate entrepreneur who has carved a distinct lane across freight logistics, fragrance, digital media, and online commerce.<br/><br/>My journey is defined by an unapologetic refusal to be limited. Every venture I pursue is grounded in passion, market intelligence, and a commitment to delivering real value to real people. I don't just build businesses — I build legacies.</p>
+        <div class="about-chips">
+          <div class="chip">CEO</div>
+          <div class="chip">Entrepreneur</div>
+          <div class="chip">Logistics Expert</div>
+          <div class="chip">Fragrance Curator</div>
+          <div class="chip">Content Creator</div>
+          <div class="chip">Digital Marketer</div>
+          <div class="chip">Speaker</div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-inner"></div>
+        <div class="about-badge">
+          <div class="about-badge-text">CEO · Tilda Wilma Ltd</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products-section">
+    <div class="section-tag">// Digital & Physical Products</div>
+    <h2 class="section-title">Built to<br/><em>Add Value</em></h2>
+    <div class="products-grid">
+      <div class="product-card featured">
+        <div class="product-label">⭐ Signature Offer</div>
+        <div class="product-title">Freight Forwarding Masterclass</div>
+        <div class="product-desc">A comprehensive course for anyone looking to break into or scale in the freight and logistics industry. Learn the exact systems I use to manage international shipments.</div>
+        <div class="product-footer">
+          <a href="#contact" class="product-cta">Get Access</a>
+          <span class="product-arrow">→</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-label">Digital Product</div>
+        <div class="product-title">Affiliate Income Playbook</div>
+        <div class="product-desc">Step-by-step guide to building sustainable affiliate marketing income. Perfect for beginners and intermediate marketers ready to scale to consistent revenue.</div>
+        <div class="product-footer">
+          <a href="#contact" class="product-cta">Learn More</a>
+          <span class="product-arrow">→</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-label">Fragrance</div>
+        <div class="product-title">Curated Perfume Collection</div>
+        <div class="product-desc">A handpicked selection of luxury fragrances — from oriental to floral, designer to niche. Experience scents that speak to your personality and leave a lasting impression.</div>
+        <div class="product-footer">
+          <a href="#contact" class="product-cta">Shop Now</a>
+          <span class="product-arrow">→</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-label">Templates</div>
+        <div class="product-title">Content Creator Toolkit</div>
+        <div class="product-desc">Done-for-you content templates, caption swipe files, and content calendar systems to grow your brand online with confidence and consistency.</div>
+        <div class="product-footer">
+          <a href="#contact" class="product-cta">Download</a>
+          <span class="product-arrow">→</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-label">eBook</div>
+        <div class="product-title">Multiple Streams Blueprint</div>
+        <div class="product-desc">Learn how to build, manage, and scale multiple income streams without burning out. This blueprint distills years of experience into actionable, proven strategies.</div>
+        <div class="product-footer">
+          <a href="#contact" class="product-cta">Get eBook</a>
+          <span class="product-arrow">→</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-label">Consultation</div>
+        <div class="product-title">1-on-1 Business Strategy</div>
+        <div class="product-desc">Private consultations for entrepreneurs ready to level up their logistics business, content strategy, or digital product business. Limited slots available monthly.</div>
+        <div class="product-footer">
+          <a href="#contact" class="product-cta">Book Session</a>
+          <span class="product-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div class="section-tag">// Get In Touch</div>
+      <div class="contact-big">Let's Build<br/><em>Together</em></div>
+      <p class="contact-sub">Ready to work with me, purchase a product, inquire about freight services, or just say hello? I'd love to hear from you. Reach out via any of the channels below.</p>
+      <div class="contact-links">
+        <a href="mailto:hello@tildawilma.com" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email Me
+        </a>
+        <a href="https://wa.me" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.124 1.527 5.855L0 24l6.335-1.652A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.99 0-3.843-.571-5.408-1.555l-.387-.229-4.01 1.047 1.07-3.895-.251-.401A9.789 9.789 0 012.182 12C2.182 6.572 6.572 2.182 12 2.182S21.818 6.572 21.818 12 17.428 21.818 12 21.818z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://instagram.com" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">© 2025 Tilda Wilma Limited. All rights reserved.</div>
+    <div class="footer-brand">Anthonia Ifeayinwa Ojeh</div>
+  </footer>
+
+  <script>
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+    function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.querySelectorAll('a, button, .service-card, .product-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.borderColor = 'rgba(0,229,255,0.8)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(0,229,255,0.5)'; });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.service-card, .product-card').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, background 0.3s, border-color 0.3s';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
